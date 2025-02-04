@@ -30,18 +30,18 @@ namespace MohawkGame2D
         int dirtCount = 60;
         int[] dirtPositionsX;
         int[] dirtPositionsY;
+        //incoming bullets
+        int bulletCount = 15;
+        int[] bulletPositionsX;
+        int[] bulletPositionsY;
+        float bulletSpeed = 200;
+        Vector2[] bulletPositions;
 
         //tried getting tracks to move
         //Vector2[] tracks = new Vector2[9];
         //int tTL = 160;
         //int tTH = 110;
         //Vector2 trackSize = new Vector2(10, 10);
-        //dust variables
-        float dustSpeed = 50;
-        float dustX = 400;
-        float dustX2 = 440;
-        float dustX3 = 470;
-        int dustcount = 0;
         //bulet variables 
         float buletSpeed = 100;
         float buletX = -1;
@@ -55,6 +55,12 @@ namespace MohawkGame2D
             Window.SetTitle("Tankgame");
             Window.SetSize(400, 400);
             Draw.LineSize = 0;
+            bulletPositions = new Vector2[bulletCount];
+            for (int i = 0; i < bulletCount; i++)
+            {
+                bulletPositions[i].X = Random.Integer(400, 500);
+                bulletPositions[i].Y = Random.Integer(0, 300);
+            }
             //Dirt Count
             dirtPositionsX = new int[dirtCount];
             dirtPositionsY = new int[dirtCount];
@@ -99,17 +105,19 @@ namespace MohawkGame2D
 
             }
             //dustclouds
-            if (dustX < -50)
+            void bullets()
             {
-                dustX = 400;
+                for (int i = 0; i > bulletPositions.Length; i++)
+                {
+                    if (bulletPositions[i].X < -50)
+                    {
+                        bulletPositions[i].X = 400;
+                    }
+                    Draw.FillColor = Tan;
+                    bulletPositions[i].X -= Time.DeltaTime * bulletSpeed;
+                    Draw.Circle(bulletPositions[i].X, bulletPositions[i].Y, 2);
+                }
             }
-            Draw.FillColor = Tan;
-            dustX -= Time.DeltaTime * dustSpeed;
-            dustX2 -= Time.DeltaTime * dustSpeed;
-            dustX3 -= Time.DeltaTime * dustSpeed;
-            Draw.Circle(dustX, 150, 30);
-            Draw.Circle(dustX2, 130, 30);
-            Draw.Circle(dustX3, 150, 30);
             //TANK
 
             //body
