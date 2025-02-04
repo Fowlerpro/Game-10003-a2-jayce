@@ -62,10 +62,9 @@ namespace MohawkGame2D
                 bulletPositions[i].X = Random.Integer(400, 800);
                 bulletPositions[i].Y = Random.Integer(0, 300);
             }
-            //Dirt Count
+            //Dirt Count and position
             dirtPositionsX = new int[dirtCount];
             dirtPositionsY = new int[dirtCount];
-            Draw.FillColor = paleBrown;
             //for (int i = 0; i < tracks.Length; i++)
             //{
             //    Vector2 trackPosition = new Vector2(tTL, tTH);
@@ -89,7 +88,7 @@ namespace MohawkGame2D
             Window.ClearBackground(Tan);
             //dirt
             Draw.LineSize = 0;
-            Draw.FillColor = deepGray;
+            Draw.FillColor = deepOrange;
             for (int i = 0; i < dirtCount; i++)
             {
                 Draw.Circle(dirtPositionsX[i], dirtPositionsY[i], 5);
@@ -105,7 +104,7 @@ namespace MohawkGame2D
                 Draw.Circle(x, Window.Height - 400, 75);
 
             }
-            //incoming bullets
+            //incoming bullets/dust particles veing made and are a seperate function
             void bullets()
             {
                 for (int i = 0; i < bulletPositions.Length; i++)
@@ -119,6 +118,7 @@ namespace MohawkGame2D
                     Draw.Circle(bulletPositions[i].X, bulletPositions[i].Y, 2);
                 }
             }
+            //calls incoming bullets 
             bullets();
             //TANK
 
@@ -189,12 +189,12 @@ namespace MohawkGame2D
                 Draw.FillColor = paleBrown;
                 Draw.Circle(buletX, 145, 10);
             }
-            // checks when the bulet goes of screen
+            // checks when the bulet goes off screen
             if (buletX > Window.Width)
             {
                 buletX = -1;
             }
-            // actually shoots the bullet
+            // actually shoots the bullet when you press spacce
             if (Input.IsKeyboardKeyPressed(KeyboardInput.Space) && shotCooldown <= 0.3f)
             {
                 shot();
