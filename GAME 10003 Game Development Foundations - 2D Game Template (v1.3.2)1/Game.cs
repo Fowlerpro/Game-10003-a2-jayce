@@ -27,11 +27,11 @@ namespace MohawkGame2D
         //clouds
         Color deepOrange = new Color("975330");
         //dirt
-        int dirtCount = 60;
+        int dirtCount = 30;
         int[] dirtPositionsX;
         int[] dirtPositionsY;
-        //incoming bullets
-        int bulletCount = 15;
+        //incoming bullets now dust particles
+        int bulletCount = 30;
         int[] bulletPositionsX;
         int[] bulletPositionsY;
         float bulletSpeed = 200;
@@ -54,11 +54,12 @@ namespace MohawkGame2D
         {
             Window.SetTitle("Tankgame");
             Window.SetSize(400, 400);
+
             Draw.LineSize = 0;
             bulletPositions = new Vector2[bulletCount];
             for (int i = 0; i < bulletCount; i++)
             {
-                bulletPositions[i].X = Random.Integer(400, 500);
+                bulletPositions[i].X = Random.Integer(400, 800);
                 bulletPositions[i].Y = Random.Integer(0, 300);
             }
             //Dirt Count
@@ -74,7 +75,7 @@ namespace MohawkGame2D
             for (int i = 0; i < dirtCount; i++)
             {
                 dirtPositionsX[i] = Random.Integer(0, 400);
-                dirtPositionsY[i] = Random.Integer(0, 400);
+                dirtPositionsY[i] = Random.Integer(202, 400);
             }
 
         }
@@ -104,10 +105,10 @@ namespace MohawkGame2D
                 Draw.Circle(x, Window.Height - 400, 75);
 
             }
-            //dustclouds
+            //incoming bullets
             void bullets()
             {
-                for (int i = 0; i > bulletPositions.Length; i++)
+                for (int i = 0; i < bulletPositions.Length; i++)
                 {
                     if (bulletPositions[i].X < -50)
                     {
@@ -118,6 +119,7 @@ namespace MohawkGame2D
                     Draw.Circle(bulletPositions[i].X, bulletPositions[i].Y, 2);
                 }
             }
+            bullets();
             //TANK
 
             //body
