@@ -30,11 +30,18 @@ namespace MohawkGame2D
         int dirtCount = 60;
         int[] dirtPositionsX;
         int[] dirtPositionsY;
+
         //tried getting tracks to move
         //Vector2[] tracks = new Vector2[9];
         //int tTL = 160;
         //int tTH = 110;
         //Vector2 trackSize = new Vector2(10, 10);
+        //dust variables
+        float dustSpeed = 50;
+        float dustX = 400;
+        float dustX2 = 440;
+        float dustX3 = 470;
+        int dustcount = 0;
         //bulet variables 
         float buletSpeed = 100;
         float buletX = -1;
@@ -91,6 +98,18 @@ namespace MohawkGame2D
                 Draw.Circle(x, Window.Height - 400, 75);
 
             }
+            //dustclouds
+            if (dustX < -50)
+            {
+                dustX = 400;
+            }
+            Draw.FillColor = Tan;
+            dustX -= Time.DeltaTime * dustSpeed;
+            dustX2 -= Time.DeltaTime * dustSpeed;
+            dustX3 -= Time.DeltaTime * dustSpeed;
+            Draw.Circle(dustX, 150, 30);
+            Draw.Circle(dustX2, 130, 30);
+            Draw.Circle(dustX3, 150, 30);
             //TANK
 
             //body
